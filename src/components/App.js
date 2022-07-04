@@ -5,7 +5,6 @@ import api from '../utils/Api';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -87,7 +86,7 @@ function App() {
     function handleDeleteCardPopup(deletedCard) {
         setDeletedCard(deletedCard);
         setIsDeletePopupOpen(true);
-      }
+    }
 
     function handleCardLike(card) {
         // Снова проверяем, есть ли уже лайк на этой карточке
@@ -183,6 +182,8 @@ function App() {
                 }
             })
             .catch((err) => {
+                setIsRegisterOk(false);
+                setIsTooltipPopupOpen(true);
                 console.log(err);
             });
     }
@@ -206,7 +207,7 @@ function App() {
                         setUserEmail(res.data.email);
                     }
                 })
-                .catch((err) => console.log(err));
+                .catch(errorApi)
         }
     }
 
